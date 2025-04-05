@@ -55,7 +55,7 @@ export default function AboutBasic({ title, subtitle, textTitle, text, pictos }:
                         >
                             <div className="w-12 h-12 bg-[#0E9594] rounded-full flex items-center justify-center mb-3">
                                 <Image
-                                    src={`/static/images/${picto.title.toLowerCase().replace(/\s+/g, '-')}.svg`}
+                                    src={`/static/images/respect.svg`}
                                     alt={picto.title}
                                     width={24}
                                     height={24}

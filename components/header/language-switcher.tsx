@@ -95,8 +95,8 @@ function LanguageSwitcherContent({ className }: LanguageSwitcherProps) {
       title={error || undefined}
     >
       {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-white/50 rounded-full">
-          <div className="w-4 h-4 border-2 border-[#F2542D] border-t-transparent rounded-full animate-spin"></div>
+        <div className="absolute inset-0 flex items-center justify-center bg-white/50">
+          <div className="w-4 h-4 border-2 border-[#F2542D] border-t-transparent animate-spin"></div>
         </div>
       )}
       <span className={cn(
@@ -119,10 +119,10 @@ function LanguageSwitcherContent({ className }: LanguageSwitcherProps) {
 function LanguageSwitcherFallback({ className }: LanguageSwitcherProps) {
   return (
     <div className={cn(
-      'flex items-center justify-center px-2 py-1 rounded-full bg-[#F2542D]/10',
+      'flex items-center justify-center px-2 py-1 bg-[#F2542D]/10',
       className
     )}>
-      <div className="w-4 h-4 border-2 border-[#F2542D] border-t-transparent rounded-full animate-spin"></div>
+      <div className="w-4 h-4 border-2 border-[#F2542D] border-t-transparent animate-spin"></div>
     </div>
   );
 }
