@@ -18,7 +18,7 @@ export default function Footer({ address, links }: FooterProps) {
   return (
     <footer className="bg-[#4A3434] text-white py-12">
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 md:gap-y-6 text-center md:text-left">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-6">
           {/* Company Info */}
           <div className="space-y-2">
             <h3 className="font-semibold text-lg mb-4">{address.name}</h3>
@@ -66,14 +66,10 @@ export default function Footer({ address, links }: FooterProps) {
           </div>
         </div>
 
-        {/* Social Links */}
-        <div className="mt-12 flex justify-center md:justify-end">
-          <SocialLinks />
-        </div>
-
-        {/* Copyright */}
-        <div className="mt-8 pt-6 border-t border-[#5A4444] text-center md:text-left md:flex md:justify-between md:items-center">
+        {/* Copyright and Social Links */}
+        <div className="mt-12 pt-6 border-t border-[#5A4444] flex justify-between items-center">
           <p className="text-sm">&copy; {new Date().getFullYear()} {address.name}</p>
+          <SocialLinks />
         </div>
       </Container>
     </footer>

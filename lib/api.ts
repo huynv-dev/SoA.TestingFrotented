@@ -18,10 +18,8 @@ export async function getPageData(lang: string = 'en'): Promise<PageData> {
     
     console.log('Full URL:', url);
 
-    // Simplified fetch options to avoid CORS issues
     const response = await fetch(url, {
       method: 'GET',
-      credentials: 'omit', // Don't send credentials
       headers: {
         'Accept': 'application/json'
       }

@@ -10,7 +10,6 @@ import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import { SITE_METADATA } from '~/data/site-metadata'
 import { HEADER_NAV_LINKS, FOOTER_NAV_LINKS } from '~/data/navigation'
-import { AppProvider } from '@/contexts/app-context'
 
 const FONT_POPPINS = Poppins({
   subsets: ['latin'],
@@ -109,11 +108,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="msapplication-TileColor" content="#000000" />
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
       <body>
-        <AppProvider>
-          <main className="relative flex min-h-screen flex-col">
-            {children}
-          </main>
-        </AppProvider>
+        <main className="relative flex min-h-screen flex-col">
+          {children}
+        </main>
       </body>
     </html>
   )

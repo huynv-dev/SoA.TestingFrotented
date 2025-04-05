@@ -1,22 +1,72 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { useApp } from '@/contexts/app-context';
+import { getPageData } from '@/lib/api';
 
 interface LanguageSwitcherProps {
   className?: string;
 }
 
-export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
-  const { currentLang, setLanguageAndRefresh, isLoading } = useApp();
+const LANGUAGE_KEY = 'app_language';
+
+function LanguageSwitcherContent({ className }: LanguageSwitcherProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [currentLang, setCurrentLang] = useState<'en' | 'fr'>('en');
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Load initial language from URL or localStorage
+  useEffect(() => {
+    try {
+      const langParam = searchParams.get('lang');
+      if (langParam === 'en' || langParam === 'fr') {
+        setCurrentLang(langParam);
+        localStorage.setItem(LANGUAGE_KEY, langParam);
+      } else {
+        const savedLang = localStorage.getItem(LANGUAGE_KEY);
+        if (savedLang === 'en' || savedLang === 'fr') {
+          setCurrentLang(savedLang);
+          // Sync URL with saved language
+          const newParams = new URLSearchParams(searchParams.toString());
+          newParams.set('lang', savedLang);
+          router.replace(`${pathname}?${newParams.toString()}`);
+        }
+      }
+    } catch (error) {
+      console.error('Error loading initial language:', error);
+    }
+  }, [searchParams, router, pathname]);
 
   const toggleLanguage = async () => {
     setError(null);
     try {
+      setIsLoading(true);
       const newLang = currentLang === 'en' ? 'fr' : 'en';
-      await setLanguageAndRefresh(newLang);
+      
+      // Gọi API để lấy data mới
+      await getPageData(newLang);
+      
+      // Lưu ngôn ngữ mới vào localStorage
+      localStorage.setItem(LANGUAGE_KEY, newLang);
+      
+      // Cập nhật URL và state
+      const newParams = new URLSearchParams(searchParams.toString());
+      newParams.set('lang', newLang);
+      
+      // Cập nhật state trước
+      setCurrentLang(newLang);
+      
+      // Sau đó mới cập nhật URL và refresh
+      router.push(`${pathname}?${newParams.toString()}`);
+      
+      // Đợi một chút để đảm bảo state đã được cập nhật
+      await new Promise(resolve => setTimeout(resolve, 100));
+      router.refresh();
+
     } catch (error) {
       const errorMessage = error instanceof Error 
         ? error.message 
@@ -25,8 +75,10 @@ export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
       console.error('Error changing language:', error);
       setError(errorMessage);
       
-      // Show error to user (you might want to add a toast/notification system)
+      // Show error to user
       alert(`Error: ${errorMessage}`);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -61,4 +113,25 @@ export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
       </span>
     </button>
   );
-}; 
+}
+
+// Fallback component khi đang loading
+function LanguageSwitcherFallback({ className }: LanguageSwitcherProps) {
+  return (
+    <div className={cn(
+      'flex items-center justify-center px-2 py-1 rounded-full bg-[#F2542D]/10',
+      className
+    )}>
+      <div className="w-4 h-4 border-2 border-[#F2542D] border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  );
+}
+
+// Export wrapped component với Suspense
+export function LanguageSwitcher(props: LanguageSwitcherProps) {
+  return (
+    <Suspense fallback={<LanguageSwitcherFallback {...props} />}>
+      <LanguageSwitcherContent {...props} />
+    </Suspense>
+  );
+} 

@@ -3,10 +3,10 @@ import Footer from '~/components/footer';
 import { Header } from '~/components/header';
 import HomePage from '~/components/home';
 
-export const revalidate = 3600; // Revalidate every hour
-
-export default async function Home() {
-  const pageData = await getPageData();
+type Params = Promise<{ lang: string }>
+export default async function Home({ params }: { params: Params }) {
+  const { lang } = await params
+  const pageData = await getPageData(lang || 'fr'); // fallback 'fr' nếu không có lang
 
   return (
     <>
@@ -14,6 +14,5 @@ export default async function Home() {
       <HomePage pageData={pageData} />
       <Footer address={pageData.footer.address} links={pageData.footer.links} />
     </>
-
   );
 }
