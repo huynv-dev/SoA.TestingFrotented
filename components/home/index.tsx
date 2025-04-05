@@ -5,7 +5,7 @@ import HeroSection from './hero-section'
 import CaseStudies from './case-studies'
 import AboutBasic from './about-basic'
 import ExploreSection from './explore-section'
-import InteractiveMap from '../ui/interactive-map'
+import InteractiveMap from './interactive-map'
 
 interface HomePageProps {
   pageData: PageData;
