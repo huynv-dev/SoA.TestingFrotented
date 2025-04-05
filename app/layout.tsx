@@ -7,38 +7,15 @@ import 'remark-github-blockquote-alert/alert.css'
 
 import clsx from 'clsx'
 import type { Metadata } from 'next'
-import { JetBrains_Mono, Nunito, Playpen_Sans, Poppins } from 'next/font/google'
-import { Footer } from '~/components/footer'
+import { Poppins } from 'next/font/google'
 import { SITE_METADATA } from '~/data/site-metadata'
-import { Header } from '~/components/header'
-
-const FONT_PLAYPEN_SANS = Playpen_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['800'],
-  variable: '--font-playpen-sans',
-})
-
-const FONT_NUNITO = Nunito({
-  subsets: ['latin'],
-  display: 'swap',
-  style: ['normal', 'italic'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-nunito',
-})
-
-const FONT_JETBRAINS_MONO = JetBrains_Mono({
-  weight: ['400', '500', '600'],
-  subsets: ['latin'],
-  style: ['normal', 'italic'],
-  display: 'swap',
-  variable: '--font-jetbrains-mono',
-})
+import { HEADER_NAV_LINKS, FOOTER_NAV_LINKS } from '~/data/navigation'
+import { AppProvider } from '@/contexts/app-context'
 
 const FONT_POPPINS = Poppins({
-  weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
   display: 'swap',
+  weight: ['400', '500', '600', '700'],
   variable: '--font-poppins',
 })
 
@@ -84,14 +61,24 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   let basePath = process.env.BASE_PATH || ''
 
+  const menuItems = HEADER_NAV_LINKS.map(link => link.title)
+
+  const footerLinks = FOOTER_NAV_LINKS.map(link => ({
+    name: link.title,
+    url: link.href
+  }))
+
+  const address = {
+    name: SITE_METADATA.title,
+    location: '123 Example Street, City, Country',
+    phone: '+1 234 567 890'
+  }
+
   return (
     <html
       lang={SITE_METADATA.language}
       className={clsx(
         'scroll-smooth',
-        FONT_NUNITO.variable,
-        FONT_JETBRAINS_MONO.variable,
-        FONT_PLAYPEN_SANS.variable,
         FONT_POPPINS.variable
       )}
       suppressHydrationWarning
@@ -122,11 +109,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="msapplication-TileColor" content="#000000" />
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
       <body>
-        <Header />
-        <main className="relative flex min-h-screen flex-col">
-          {children}
-        </main>
-        <Footer />
+        <AppProvider>
+          <main className="relative flex min-h-screen flex-col">
+            {children}
+          </main>
+        </AppProvider>
       </body>
     </html>
   )

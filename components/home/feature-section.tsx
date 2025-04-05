@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { SectionHeader } from '../ui/section-header';
 import { Container } from '../ui/container';
+import { Button } from '../ui/button';
+import type { Case } from '@/types/api';
 
 interface FeatureCardProps {
   title: string;
@@ -12,70 +14,84 @@ interface FeatureCardProps {
   isMiddle?: boolean;
 }
 
+interface FeatureSectionProps {
+  title: string;
+  subtitle: string;
+  cases: Case[];
+}
+
+const ArrowIcon = () => (
+  <span className="relative w-6 h-6 group-hover:text-white">
+    <Image
+      src="/static/images/arrow-up-blue.svg"
+      alt="Arrow"
+      width={24}
+      height={24}
+      className="absolute inset-0 transition-opacity duration-200 group-hover:opacity-0"
+    />
+    <Image
+      src="/static/images/arrow-up-white.svg"
+      alt="Arrow"
+      width={24}
+      height={24}
+      className="absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+    />
+  </span>
+);
+
 const FeatureCard = ({ title, subtitle, description, imageSrc, href, isMiddle }: FeatureCardProps) => {
   return (
-    <div className={`flex flex-col ${isMiddle ? '-mt-8' : ''}`}>
-      <div className="relative aspect-square w-full overflow-hidden rounded-lg">
-        <Image
-          src={imageSrc}
-          alt={title}
-          fill
-          className="object-cover transition-transform duration-300 hover:scale-105"
-        />
+    <div className={`flex flex-col ${isMiddle ? '' : 'md:mt-10'}`}>
+      <div className="relative w-full overflow-hidden mb-4 md:mb-6">
+        <div className="aspect-[3/2] md:aspect-square cursor-pointer">
+          <Image
+            src={imageSrc}
+            alt={title}
+            fill
+            className="w-full h-full object-cover rounded-[8px] transition-transform duration-300 hover:scale-105"
+          />
+        </div>
       </div>
-      <div className="mt-4 flex flex-col space-y-2">
-        <span className="text-sm text-orange-500">{subtitle}</span>
-        <h3 className="text-xl font-semibold text-gray-900">{title}</h3>
-        <p className="text-sm text-gray-600">{description}</p>
-        <Link 
+      <div className="mt-2 md:mt-4 flex flex-col space-y-2 md:space-y-4">
+        <span className="text-[12px] md:text-[20px] text-primary-500 font-medium">{subtitle}</span>
+        <h3 className="text-[16px] md:text-[28px] text-secondary-500 font-medium leading-[20px] md:leading-[32px]">{title}</h3>
+        <p className="text-[14px] md:text-[18px] text-secondary-500/80 font-normal leading-[18px] md:leading-[24px]">{description}</p>
+        <Button 
           href={href}
-          className="inline-flex items-center text-sm font-medium text-orange-500 hover:text-orange-600"
+          variant="outline"
+          size="lg"
+          className="w-fit rounded-full group"
+          icon={<ArrowIcon />}
         >
-          Forfait {'>'}
-        </Link>
+          {title}
+        </Button>
       </div>
     </div>
   );
 };
 
-export const FeatureSection = () => {
-  const features = [
-    {
-      title: 'Case sous-titre',
-      subtitle: 'Case Title',
-      description: 'Chaque sentier vous conduit à des panoramas époustouflants, chaque instant...',
-      imageSrc: '/static/images/citrus.png',
-      href: '/features/1'
-    },
-    {
-      title: 'Case sous-titre',
-      subtitle: 'Case Title',
-      description: 'Chez BASIC, la pêche est une alliance entre passion et respect. Imaginez des lacs pois...',
-      imageSrc: '/static/images/smoothie.png',
-      href: '/features/2'
-    },
-    {
-      title: 'Case sous-titre',
-      subtitle: 'Case Title',
-      description: 'BASIC vous guide à travers des territoires authentiques, où la chasse est plus quune d...',
-      imageSrc: '/static/images/lemons.png',
-      href: '/features/3'
-    }
-  ];
+export const FeatureSection = ({ title, subtitle, cases }: FeatureSectionProps) => {
+  const features = cases.map(caseItem => ({
+    title: caseItem.category,
+    subtitle: caseItem.tagline,
+    description: caseItem.description,
+    imageSrc: `/static/images/default.png`,
+    href: `/features/${caseItem.category.toLowerCase().replace(/\s+/g, '-')}`,
+  }));
 
   return (
-    <section className="py-16">
+    <section className="py-8 md:py-16">
       <Container>
-        <div className="flex flex-col items-center mb-12">
+        <div className="flex flex-col items-center mb-6 md:mb-10">
           <SectionHeader
-            title="TITRE BLOC 1"
-            className="mb-4"
+            title={title}
+            className="mb-2 md:mb-4"
           />
-          <p className="text-gray-600 text-center text-lg">
-            Sous-titre Bloc 1
+          <p className="text-[16px] md:text-[24px] text-secondary-500 font-normal leading-[20px] md:leading-[30px] tracking-[0.25px] text-center">
+            {subtitle}
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {features.map((feature, index) => (
             <FeatureCard 
               key={index} 

@@ -13,23 +13,38 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Lexend Deca', ...fontFamily.sans],
-        poppins: ['var(--font-poppins)', ...fontFamily.sans],
+        sans: ['Poppins', ...fontFamily.sans],
       },
       colors: {
         primary: {
-          50: '#fff7ed',
-          100: '#ffedd5',
-          200: '#fed7aa',
-          300: '#fdba74',
+          50: '#fafafa',
+          100: '#ffede8',
+          200: '#f6a793',
+          300: '#FFF4F1',
           400: '#fb923c',
           500: '#F2542D',
-          600: '#ea580c',
+          600: '#ca3e1b',
           700: '#c2410c',
           800: '#9a3412',
           900: '#7c2d12',
           950: '#431407',
         },
+        secondary: {
+          50: '#fdf8f8',
+          100: '#fae9e9',
+          200: '#f4d4d4',
+          300: '#eab4b4',
+          400: '#d98888',
+          500: '#562C2C',
+          600: '#4d2727',
+          700: '#412121',
+          800: '#361c1c',
+          900: '#2c1717',
+          950: '#1a0d0d',
+        },
+        orange: {
+          DEFAULT: '#F2542D'
+        }
       },
     },
   },

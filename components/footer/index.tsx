@@ -1,39 +1,81 @@
-'use client'
-import { Container } from '~/components/ui/container'
-import { FooterBottom } from './footer-bottom'
-import { SITE_METADATA } from '~/data/site-metadata'
-import { Link } from '~/components/ui/link'
+import Link from 'next/link';
+import { Container } from '../ui/container';
+import SocialLinks from './social-links';
+import type { Address, MenuItem } from '@/types/api';
 
-const QUICK_LINKS = [
-  { title: 'Home', href: '/' },
-  { title: 'About', href: '/about' },
-  { title: 'Tags', href: '/tags' },
-  { title: 'Projects', href: '/project' },
-  { title: 'Notes', href: '/note' },
-  { title: 'Resume', href: '/resume' },
-]
+interface FooterProps {
+  address: Address;
+  links: MenuItem[];
+}
 
-export function Footer() {
+export default function Footer({ address, links }: FooterProps) {
+  // Split links into three groups for the three columns
+  const linksPerColumn = Math.ceil(links.length / 3);
+  const firstColumnLinks = links.slice(0, linksPerColumn);
+  const secondColumnLinks = links.slice(linksPerColumn, linksPerColumn * 2);
+  const thirdColumnLinks = links.slice(linksPerColumn * 2);
+
   return (
-    <Container
-      as="footer"
-      className="bg-background border-t border-gray-300 px-4 dark:border-gray-700"
-    >
-      <div className="flex flex-col items-center pt-6 text-sm text-gray-500 dark:text-gray-400">
-        {/* Quick Links */}
-        <div className="mb-4 flex flex-wrap justify-center gap-x-4 gap-y-2">
-          {QUICK_LINKS.map(({ title, href }) => (
-            <Link key={href} href={href} className="hover:underline">
-              {title}
-            </Link>
-          ))}
+    <footer className="bg-[#4A3434] text-white py-12">
+      <Container>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 md:gap-y-6 text-center md:text-left">
+          {/* Company Info */}
+          <div className="space-y-2">
+            <h3 className="font-semibold text-lg mb-4">{address.name}</h3>
+            <p className="text-sm">{address.phone}</p>
+            <p className="text-sm">{address.location}</p>
+          </div>
+
+          {/* First Column Links */}
+          <div>
+            {firstColumnLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.url}
+                className="block text-sm mb-3 hover:text-[#F2542D] transition-colors"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+
+          {/* Second Column Links */}
+          <div>
+            {secondColumnLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.url}
+                className="block text-sm mb-3 hover:text-[#F2542D] transition-colors"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+
+          {/* Third Column Links */}
+          <div>
+            {thirdColumnLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.url}
+                className="block text-sm mb-3 hover:text-[#F2542D] transition-colors"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Social Links */}
+        <div className="mt-12 flex justify-center md:justify-end">
+          <SocialLinks />
         </div>
 
         {/* Copyright */}
-        <p>
-          © {new Date().getFullYear()} {SITE_METADATA.author}. All rights reserved.
-        </p>
-      </div>
-    </Container>
-  )
+        <div className="mt-8 pt-6 border-t border-[#5A4444] text-center md:text-left md:flex md:justify-between md:items-center">
+          <p className="text-sm">&copy; {new Date().getFullYear()} {address.name}</p>
+        </div>
+      </Container>
+    </footer>
+  );
 }

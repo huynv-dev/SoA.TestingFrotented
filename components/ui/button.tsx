@@ -10,14 +10,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'bg-orange-500 text-white hover:bg-orange-600 focus:ring-orange-500',
+        primary: 'gap-2 py-2 px-3 md:py-3 md:px-5 bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500 text-[18px] md:text-[20px] font-medium leading-[20px] capitalize',
         secondary: 'bg-white/10 text-white border-2 border-white/20 hover:bg-white/20 focus:ring-white',
-        outline: 'bg-white text-gray-900 border-2 border-gray-200 hover:bg-gray-50 focus:ring-gray-500',
+        outline: 'bg-white text-secondary-500 hover:bg-primary-500 hover:text-white focus:ring-secondary-500 text-[14px] md:text-[18px] font-medium leading-[16px] md:leading-[20px] capitalize border-[1.5px] border-secondary-500/30 h-[32px] md:h-[46px] font-poppins',
+        activeButton: 'py-2 px-3 md:py-3 md:px-4 bg-white text-secondary-500 hover:bg-secondary-50 focus:ring-secondary-500 text-[20px] md:text-[24px] font-medium leading-[20px] md:leading-[24px] capitalize border border-secondary-500',
       },
       size: {
         sm: 'text-sm px-4 py-2',
         md: 'text-base px-6 py-2.5',
-        lg: 'text-lg px-8 py-3',
+        lg: 'text-lg px-3 md:px-8 py-3',
       },
       withIcon: {
         true: 'group',
@@ -35,7 +36,7 @@ const buttonVariants = cva(
 type IconPosition = 'front' | 'back';
 
 type ButtonBaseProps = VariantProps<typeof buttonVariants> & {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
   icon?: ReactNode;
   iconPosition?: IconPosition;

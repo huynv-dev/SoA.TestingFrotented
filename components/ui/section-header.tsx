@@ -13,15 +13,16 @@ export const SectionHeader = ({
 }: SectionHeaderProps) => {
   return (
     <div className={cn('w-full', className)}>
-      <div className="flex items-center w-full gap-4">
-        <div className="h-[2px] w-full bg-[#BBBBBB]" />
+      <div className="flex flex-col md:flex-row items-center w-full gap-2 md:gap-4">
+        <div className="h-[1px] md:h-[2px] w-full bg-[#BBBBBB]" />
         <h2 className={cn(
-          'text-[52px] font-semibold text-primary-500 whitespace-nowrap font-poppins uppercase leading-[60px]',
+          'text-[24px] md:text-[52px] font-semibold text-primary-500 text-center whitespace-normal break-words',
+          'font-poppins leading-[1.2] md:leading-[1.2] px-4 max-w-full md:max-w-[80%]',
           titleClassName
         )}>
           {title}
         </h2>
-        <div className="h-[2px] w-full bg-[#BBBBBB]" />
+        <div className="h-[1px] md:h-[2px] w-full bg-[#BBBBBB]" />
       </div>
     </div>
   );
