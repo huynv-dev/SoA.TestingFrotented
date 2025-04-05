@@ -1,0 +1,41 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 32 32"
+  width="32"
+  height="32"
+  aria-hidden="true"
+>
+  <!-- Nền chia đôi -->
+  <rect x="0" y="0" width="16" height="32" fill="#3498db" />
+  <rect x="16" y="0" width="16" height="32" fill="#2c3e50" />
+
+  <!-- Chữ H - chủ yếu bên trái -->
+  <path
+    d="M6 6 L6 26 L10 26 L10 18 L14 18 L14 26 L18 26 L18 6 L14 6 L14 14 L10 14 L10 6 Z"
+    fill="white"
+    fill-opacity="0.9"
+  />
+
+  <!-- Chữ N - chủ yếu bên phải -->
+  <path
+    d="M14 8 L14 24 L18 24 L18 16 L22 24 L26 24 L26 8 L22 8 L22 16 L18 8 Z"
+    fill="white"
+    fill-opacity="0.9"
+  />
+
+  <!-- Hiệu ứng bóng nhẹ để tăng độ nổi -->
+  <path
+    d="M6 6 L6 26 M14 6 L14 14 M10 14 L14 14 M10 18 L14 18 M14 18 L14 26 M18 6 L18 26"
+    fill="none"
+    stroke="black"
+    stroke-opacity="0.2"
+    stroke-width="0.5"
+  />
+  <path
+    d="M14 8 L14 24 M18 8 L18 24 M22 8 L22 16 M18 16 L22 24 M26 8 L26 24"
+    fill="none"
+    stroke="black"
+    stroke-opacity="0.2"
+    stroke-width="0.5"
+  />
+</svg>

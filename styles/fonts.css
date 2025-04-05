@@ -1,0 +1,119 @@
+@font-face {
+  font-family: 'Futura';
+  src: url('/fonts/Futura-Medium.woff2') format('woff2'),
+       url('/fonts/Futura-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futura';
+  src: url('/fonts/Futura-Book.woff2') format('woff2'),
+       url('/fonts/Futura-Book.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futura';
+  src: url('/fonts/Futura-Bold.woff2') format('woff2'),
+       url('/fonts/Futura-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Lexend Deca */
+@font-face {
+  font-family: 'Lexend Deca';
+  src: url('/static/fonts/LexendDeca-Light.ttf') format('ttf'),
+       url('/static/fonts/LexendDeca-Light.ttf') format('ttf');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lexend Deca';
+  src: url('/static/fonts/LexendDeca-Regular.ttf') format('ttf'),
+       url('/static/fonts/LexendDeca-Regular.ttf') format('ttf');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lexend Deca';
+  src: url('/static/fonts/LexendDeca-Medium.ttf') format('ttf'),
+       url('/static/fonts/LexendDeca-Medium.ttf') format('ttf');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lexend Deca';
+  src: url('/static/fonts/LexendDeca-SemiBold.ttf') format('ttf'),
+       url('/static/fonts/LexendDeca-SemiBold.ttf') format('ttf');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lexend Deca';
+  src: url('/static/fonts/LexendDeca-Bold.ttf') format('ttf'),
+       url('/static/fonts/LexendDeca-Bold.ttf') format('ttf');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Lora */
+@font-face {
+  font-family: 'Lora';
+  src: url('/static/fonts/Lora-Regular.ttf') format('ttf'),
+       url('/static/fonts/Lora-Regular.ttf') format('ttf');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('/static/fonts/Lora-Medium.ttf') format('ttf'),
+       url('/static/fonts/Lora-Medium.ttf') format('ttf');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('/static/fonts/Lora-SemiBold.ttf') format('ttf'),
+       url('/static/fonts/Lora-SemiBold.ttf') format('ttf');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('/static/fonts/Lora-Bold.ttf') format('ttf'),
+       url('/static/fonts/Lora-Bold.ttf') format('ttf');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* NVN Motherland Signature */
+@font-face {
+  font-family: 'NVN Motherland Signature';
+  src: url('/static/fonts/NVN-Motherland-Signature.ttf') format('ttf'),
+       url('/static/fonts/NVN-Motherland-Signature.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
