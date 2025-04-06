@@ -59,7 +59,7 @@ export default function CaseStudies({ title, moreInfo, cases }: CaseStudyProps) 
         </div>
 
         <div className="-mx-4 md:-mx-24" dir="rtl">
-          <div className="max-w-screen absolute left-0 overflow-hidden" ref={emblaRef}>
+          <div className="max-w-screen absolute left-0 md:left-[24px] overflow-hidden" ref={emblaRef}>
             <div className="flex">
               {[...caseStudies, ...caseStudies, ...caseStudies].map((study, index) => (
                 <div key={index} className="max-w-[340px] min-w-0 flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.33%] xl:flex-[0_0_25%] px-4 md:px-6" dir="ltr">

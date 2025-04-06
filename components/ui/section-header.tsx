@@ -18,6 +18,7 @@ export const SectionHeader = ({
         <h2 className={cn(
           'text-[24px] md:text-[52px] font-semibold text-primary-500 text-center whitespace-normal break-words',
           'font-poppins leading-[1.2] md:leading-[1.2] px-4 max-w-full md:max-w-[80%]',
+          'line-clamp-2',
           titleClassName
         )}>
           {title}

@@ -127,13 +127,13 @@ export default function OurActivities({
 
               {/* File Upload */}
               <div className="flex items-center gap-4">
-                <label className="text-lg font-medium text-[#562C2C] min-w-[120px] pt-2">
+                <label className="text-lg font-medium text-[#562C2C] min-w-[120px]">
                   {btn_4[0]}
                 </label>
                 <div className="flex items-center gap-2">
                   <label
                     htmlFor="file"
-                    className="cursor-pointer flex items-center gap-2 text-primary-500 hover:text-primary-600"
+                    className="cursor-pointer flex items-center gap-2 text-[#1E88F9] hover:text-[#1E88F9]"
                   >
                     <Paperclip className="w-5 h-5" />
                     <span>{formData.file ? formData.file.name : btn_4[1]}</span>
