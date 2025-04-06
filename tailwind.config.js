@@ -44,6 +44,9 @@ module.exports = {
         },
         orange: {
           DEFAULT: '#F2542D'
+        },
+        green: {
+          500: '#0E9594'
         }
       },
     },

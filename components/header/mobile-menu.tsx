@@ -3,6 +3,7 @@
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { LanguageSwitcher } from './language-switcher';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -40,6 +41,9 @@ export const MobileMenu = ({ isOpen, onToggle, menuItems }: MobileMenuProps) => 
               <span className="sr-only">Close main menu</span>
               <X className="block h-6 w-6" aria-hidden="true" />
             </button>
+          </div>
+          <div className="flex items-center">
+            <LanguageSwitcher />
           </div>
         </div>
 
