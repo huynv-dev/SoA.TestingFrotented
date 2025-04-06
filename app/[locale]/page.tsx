@@ -4,6 +4,7 @@ import Footer from '~/components/footer';
 import { Header } from '~/components/header';
 import HomePage from '~/components/home';
 import { getTranslation } from '@/lib/getTranslation';
+import type { Language } from '~/types/i18n';
 
 export default async function Home({
   params,
@@ -12,7 +13,7 @@ export default async function Home({
 }) {
   const lang = (await params).locale || 'en';
   let pageData: PageData | null = null;
-
+  const t = getTranslation(lang);
   try {
     pageData = await getPageData(lang);
   } catch (error) {
@@ -25,12 +26,12 @@ export default async function Home({
   }
 
   if (!pageData) return null;
-  const t = getTranslation(lang);
+  const language = lang as Language;
 
   return (
     <>
       <Header menuItems={pageData.head_menu} />
-      <HomePage pageData={pageData} />
+      <HomePage pageData={pageData} language={language} />
       <Footer address={pageData.footer.address} links={pageData.footer.links} />
     </>
   );

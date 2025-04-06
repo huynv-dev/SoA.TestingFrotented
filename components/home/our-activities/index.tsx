@@ -10,6 +10,7 @@ import { Calendar } from '@/components/ui/calendar';
 import RichTextEditor from '@/components/ui/tiptap-editor';
 import { FormGroup } from './form-group';
 import { FileUpload } from './file-upload';
+import type { Language } from '~/types/i18n';
 
 const BUSY_DATES = [
   new Date(2025, 0, 28),
@@ -25,6 +26,7 @@ interface OurActivitiesProps {
   btn_4: string[]; // [label, placeholder, note]
   btn_5: string;
   btn_6: string;
+  language: Language;
 }
 
 export default function OurActivities({
@@ -35,6 +37,7 @@ export default function OurActivities({
   btn_4,
   btn_5,
   btn_6,
+  language,
 }: OurActivitiesProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [formData, setFormData] = useState({
@@ -43,7 +46,6 @@ export default function OurActivities({
     message: '',
     file: null as File | null,
   });
-
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file && file.type === 'application/pdf') {
@@ -67,7 +69,7 @@ export default function OurActivities({
         <SectionHeader title={title} className="mb-8 md:mb-12" />
 
         <form onSubmit={handleSubmit} className="space-y-8 mx-auto">
-          <Calendar onDateSelect={setSelectedDate} busyDates={BUSY_DATES} />
+          <Calendar onDateSelect={setSelectedDate} busyDates={BUSY_DATES} language={language} />
 
           <div className="space-y-6">
             <FormGroup label={btn_1[0]}>
