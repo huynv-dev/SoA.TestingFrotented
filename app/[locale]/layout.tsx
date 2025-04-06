@@ -9,7 +9,7 @@ import clsx from 'clsx'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import { SITE_METADATA } from '~/data/site-metadata'
-import { HEADER_NAV_LINKS, FOOTER_NAV_LINKS } from '~/data/navigation'
+import { notFound } from 'next/navigation'
 
 const FONT_POPPINS = Poppins({
   subsets: ['latin'],
@@ -57,42 +57,56 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  let basePath = process.env.BASE_PATH || ''
+const locales = ['en', 'fr'];
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+export default async function RootLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  let basePath = process.env.BASE_PATH || '';
+  const locale = (await params).locale || 'en';
+  if (!locales.includes(locale)) notFound();
+
   return (
     <html
-      lang={SITE_METADATA.language}
-      className={clsx(
-        'scroll-smooth',
-        FONT_POPPINS.variable
-      )}
+      lang={locale}
+      className={clsx('scroll-smooth', FONT_POPPINS.variable)}
       suppressHydrationWarning
     >
-      <link
-        rel="apple-touch-icon"
-        sizes="76x76"
-        href={`${basePath}/static/favicons/apple-touch-icon.png`}
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href={`${basePath}/static/favicons/favicon-32x32.png`}
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="16x16"
-        href={`${basePath}/static/favicons/favicon-16x16.png`}
-      />
-      <link rel="manifest" href={`${basePath}/static/favicons/site.webmanifest`} />
-      <link
-        rel="mask-icon"
-        href={`${basePath}/static/favicons/safari-pinned-tab.svg`}
-        color="#5bbad5"
-      />
-      <meta name="msapplication-TileColor" content="#000000" />
-      <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
+      <head>
+        <link
+          rel="apple-touch-icon"
+          sizes="76x76"
+          href={`${basePath}/static/favicons/apple-touch-icon.png`}
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href={`${basePath}/static/favicons/favicon-32x32.png`}
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href={`${basePath}/static/favicons/favicon-16x16.png`}
+        />
+        <link rel="manifest" href={`${basePath}/static/favicons/site.webmanifest`} />
+        <link
+          rel="mask-icon"
+          href={`${basePath}/static/favicons/safari-pinned-tab.svg`}
+          color="#5bbad5"
+        />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
+      </head>
       <body>
         <main className="relative flex min-h-screen flex-col">
           {children}
