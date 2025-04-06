@@ -83,35 +83,37 @@ function LanguageSwitcherContent({ className }: LanguageSwitcherProps) {
   };
 
   return (
-    <button
-      onClick={toggleLanguage}
-      disabled={isLoading}
-      className={cn(
-        'flex items-center justify-center px-2 py-1 rounded-full bg-[#F2542D]/10 hover:bg-[#F2542D]/20 transition-colors',
-        isLoading && 'opacity-50 cursor-not-allowed',
-        error && 'border-red-500',
-        className
-      )}
-      title={error || undefined}
-    >
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-white/50">
-          <div className="w-4 h-4 border-2 border-[#F2542D] border-t-transparent animate-spin"></div>
-        </div>
-      )}
-      <span className={cn(
-        'text-sm font-medium px-2 py-0.5 rounded-full transition-colors',
-        currentLang === 'en' ? 'bg-[#F2542D] text-white' : 'text-[#F2542D]'
-      )}>
-        EN
-      </span>
-      <span className={cn(
-        'text-sm font-medium px-2 py-0.5 rounded-full ml-1 transition-colors',
-        currentLang === 'fr' ? 'bg-[#F2542D] text-white' : 'text-[#F2542D]'
-      )}>
-        FR
-      </span>
-    </button>
+    <Suspense>
+      <button
+        onClick={toggleLanguage}
+        disabled={isLoading}
+        className={cn(
+          'flex items-center justify-center px-2 py-1 rounded-full bg-[#F2542D]/10 hover:bg-[#F2542D]/20 transition-colors',
+          isLoading && 'opacity-50 cursor-not-allowed',
+          error && 'border-red-500',
+          className
+        )}
+        title={error || undefined}
+      >
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-white/50">
+            <div className="w-4 h-4 border-2 border-[#F2542D] border-t-transparent animate-spin"></div>
+          </div>
+        )}
+        <span className={cn(
+          'text-sm font-medium px-2 py-0.5 rounded-full transition-colors',
+          currentLang === 'en' ? 'bg-[#F2542D] text-white' : 'text-[#F2542D]'
+        )}>
+          EN
+        </span>
+        <span className={cn(
+          'text-sm font-medium px-2 py-0.5 rounded-full ml-1 transition-colors',
+          currentLang === 'fr' ? 'bg-[#F2542D] text-white' : 'text-[#F2542D]'
+        )}>
+          FR
+        </span>
+      </button>
+    </Suspense>
   );
 }
 

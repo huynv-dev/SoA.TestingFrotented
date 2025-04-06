@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { getPageData } from '@/lib/api';
 import type { PageData } from '@/types/api';
@@ -19,8 +19,6 @@ export default function Home() {
       try {
         setIsLoading(true);
         setError(null);
-        
-        // Lấy ngôn ngữ từ URL hoặc mặc định là 'en'
         const lang = searchParams.get('lang') || 'en';
         const data = await getPageData(lang);
         setPageData(data);
@@ -33,7 +31,7 @@ export default function Home() {
     };
 
     fetchData();
-  }, [searchParams]); // Re-fetch khi URL params thay đổi
+  }, [searchParams]);
 
   if (isLoading) {
     return (
@@ -56,10 +54,10 @@ export default function Home() {
   }
 
   return (
-    <>
+    <Suspense>
       <Header menuItems={pageData.head_menu} />
       <HomePage pageData={pageData} />
       <Footer address={pageData.footer.address} links={pageData.footer.links} />
-    </>
+    </Suspense>
   );
 }

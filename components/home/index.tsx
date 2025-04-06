@@ -1,12 +1,12 @@
 import type { PageData } from '@/types/api';
-import OurActivities from './our-activities'
-import FeatureSection from './feature-section'
-import HeroSection from './hero-section'
-import CaseStudies from './case-studies'
-import AboutBasic from './about-basic'
-import ExploreSection from './explore-section'
+import FeatureSection from './feature'
+import HeroSection from './hero'
+import CaseStudies from './case-study'
+import AboutBasic from './about'
+import ExploreSection from './expore'
 import InteractiveMap from './interactive-map'
-import GallerySection from './gallery-section';
+import GallerySection from './gallery';
+import OurActivities from './our-activities/index';
 
 interface HomePageProps {
   pageData: PageData;

@@ -59,20 +59,6 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   let basePath = process.env.BASE_PATH || ''
-
-  const menuItems = HEADER_NAV_LINKS.map(link => link.title)
-
-  const footerLinks = FOOTER_NAV_LINKS.map(link => ({
-    name: link.title,
-    url: link.href
-  }))
-
-  const address = {
-    name: SITE_METADATA.title,
-    location: '123 Example Street, City, Country',
-    phone: '+1 234 567 890'
-  }
-
   return (
     <html
       lang={SITE_METADATA.language}
