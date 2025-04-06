@@ -22,3 +22,10 @@ body{
   .ProseMirror:focus {
     border-color: #10b981;
   }
+  .is-node-empty.is-editor-empty{
+    color: #AAAAAA;
+    font-size: 18px;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word
+  }

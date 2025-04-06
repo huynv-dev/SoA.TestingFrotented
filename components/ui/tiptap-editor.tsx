@@ -90,7 +90,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
       </div>
       {/* Group 2 */}
 
-      <div className="flex items-center gap-x-2 p-2 border-l border-[#E2E8F0] pl-2">
+      <div className="flex items-center md:gap-x-2 md:p-2 border-l border-[#E2E8F0] pl-2">
         <div className="relative ml-2">
           <input
             type="color"
@@ -174,7 +174,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
         </button>
       </div>
       {/* Group 3 */}
-      <div className="flex items-center gap-x-2 p-2 border-l border-[#E2E8F0] pl-2">
+      <div className="flex items-center md:gap-x-2 md:p-2 border-l border-[#E2E8F0] pl-2">
         {/* Left */}
         <button
           onClick={() => editor.chain().focus().setTextAlign('left').run()}
@@ -198,7 +198,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
         </button>
       </div>
       {/* Group 4 */}
-      <div className="flex items-center gap-x-2 p-2 border-l border-[#E2E8F0] pl-2">
+      <div className="flex items-center md:gap-x-2 md:p-2 border-l border-[#E2E8F0] pl-2">
         {/* Bullet List */}
         <button
           onClick={() => {
@@ -231,7 +231,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
         </button>
       </div>
       {/* Group 5 */}
-      <div className="flex items-center gap-x-2 p-2 border-l border-[#E2E8F0] pl-2">
+      <div className="flex items-center md:gap-x-2 md:p-2 border-l border-[#E2E8F0] pl-2">
         <input
           type="file"
           accept="image/*"
@@ -332,7 +332,7 @@ const TipTapEditor: React.FC<TipTapEditorProps> = ({ content = '', onChange, pla
         emptyNodeClass: 'is-node-empty',
       }),
     ],
-    content: content || '',
+    content: content,
     onUpdate: ({ editor }) => {
       if (onChange) {
         onChange(editor.getHTML())
@@ -344,6 +344,13 @@ const TipTapEditor: React.FC<TipTapEditorProps> = ({ content = '', onChange, pla
       },
     },
   })
+
+  // Add useEffect to update content when prop changes
+  useEffect(() => {
+    if (editor && editor.getHTML() !== content) {
+      editor.commands.setContent(content)
+    }
+  }, [content, editor])
 
   return (
     <div className="rounded-[24px] shadow-[0px_0px_30px_rgba(242,84,45,0.10)] outline outline-1 outline-secondary-500/30 -outline-offset-[1px] bg-white w-full">

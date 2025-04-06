@@ -40,7 +40,7 @@ export default function GallerySection({ title, text, reviews, footer }: Gallery
     <section
       className="py-12"
       style={{
-        background: 'linear-gradient(180deg, rgba(226, 246, 246, 1) 0%, rgba(226, 246, 246, 0.95) 100%)',
+        background: 'bg-gradient-to-b from-[#e5f6fd] to-white',
       }}
     >
       <Container>

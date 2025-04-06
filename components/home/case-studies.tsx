@@ -39,30 +39,33 @@ export default function CaseStudies({ title, moreInfo, cases }: CaseStudyProps) 
   }));
 
   return (
-    <section className="py-16 md:py-24 min-h-[600px] max-w-screen overflow-hidden">
-      <Container className="relative">
+    <section className="py-4 min-h-[600px] max-w-screen overflow-hidden">
+      <Container className="relative min-h-[70vh]">
         <div className="flex items-center justify-between mb-12">
-          <h2 className="text-[#F2542D] text-[32px] md:text-[48px] line-clamp-1 font-semibold font-poppins uppercase leading-[60px] break-words">{title}</h2>
-          <Link 
-            href="#" 
-            className="text-[#666666] text-lg md:text-[20px] font-medium font-poppins capitalize leading-[30px] break-words flex items-center gap-2 group"
+          <h2 className="text-[#F2542D] text-center md:text-left text-[32px] md:text-[48px] line-clamp-1 font-semibold font-poppins uppercase leading-[60px] break-words">{title}</h2>
+          {/* Desktop version */}
+          <Link
+            href="#"
+            className="hidden md:flex text-[#666666] text-lg md:text-[20px] font-medium font-poppins capitalize leading-[30px] break-words items-center gap-2 group"
           >
             <span className="group-hover:underline">{moreInfo}</span>
-            <Image 
-              src="/static/images/arrow-right-1.svg" 
-              alt="arrow right" 
-              width={24} 
+            <Image
+              src="/static/images/arrow-right-1.svg"
+              alt="arrow right"
+              width={24}
               height={24}
               className="inline-block group-hover:underline"
             />
           </Link>
+
+
         </div>
 
         <div className="-mx-4 md:-mx-24" dir="rtl">
-          <div className="max-w-screen absolute left-0 md:left-[24px] overflow-hidden" ref={emblaRef}>
+          <div className="max-w-screen absolute left-[-40px] pl-6 md:left-[26px] overflow-hidden" ref={emblaRef}>
             <div className="flex">
               {[...caseStudies, ...caseStudies, ...caseStudies].map((study, index) => (
-                <div key={index} className="max-w-[340px] min-w-0 flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.33%] xl:flex-[0_0_25%] px-4 md:px-6" dir="ltr">
+                <div key={index} className="max-w-[250px] md:max-w-[340px] min-w-0 flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.33%] xl:flex-[0_0_25%] px-4 md:px-6" dir="ltr">
                   <div className="bg-white cursor-pointer rounded-[8px] overflow-hidden h-full">
                     <div className="relative aspect-[4/3]">
                       <Image
@@ -82,7 +85,20 @@ export default function CaseStudies({ title, moreInfo, cases }: CaseStudyProps) 
               ))}
             </div>
           </div>
+          {/* Mobile version */}
         </div>
+        <Link
+          href="#"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 max-w-[340px] md:hidden w-full mt-6 bg-primary-500 hover:bg-primary-600 text-white text-center py-3 px-6 rounded-[100px] text-base font-medium font-poppins transition-colors duration-200 flex items-center justify-center gap-2"
+        >
+          <span>{moreInfo}</span>
+          <Image 
+            src="/static/images/arrow-right-white.svg" 
+            alt="arrow right" 
+            width={20} 
+            height={20}
+          />
+        </Link>
       </Container>
     </section>
   );
