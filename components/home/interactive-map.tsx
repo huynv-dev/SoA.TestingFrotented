@@ -123,7 +123,7 @@ export default function InteractiveMap({ title, cases }: InteractiveMapProps) {
                                         />
                                     </div>
                                     <span
-                                        className={`font-poppins text-[16px] sm:text-[20px] font-medium leading-[16px] sm:leading-[20px] capitalize ${
+                                        className={`font-poppins text-[16px] sm:text-[20px] font-medium leading-[16px] sm:leading-[20px] text-left line-clamp-1 capitalize ${
                                             activeFilter === activity ? 'text-white' : 'text-[#562C2C]'
                                         }`}
                                         style={{ wordWrap: 'break-word' }}
