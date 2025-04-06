@@ -1,0 +1,22 @@
+{
+    "home": {
+      "title": "Welcome to the site",
+      "description": "Build amazing things with Next.js"
+    },
+    "calendar": {
+        "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+        "daysOfWeek": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        "available": "Available",
+        "occupied": "Occupied",
+        "selectedDate": "Selected date",
+        "previousMonth": "Previous Month",
+        "nextMonth": "Next Month",
+        "status": {
+            "available": "Available",
+            "occupied": "Occupied",
+            "past": "Past",
+            "future": "Upcoming"
+        }
+    }
+  }
+  

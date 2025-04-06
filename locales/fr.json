@@ -1,0 +1,22 @@
+{
+    "home": {
+      "title": "Bienvenue sur le site",
+      "description": "Construisez des choses incroyables avec Next.js"
+    },
+    "calendar": {
+        "months": ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+        "daysOfWeek": ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
+        "available": "Libre",
+        "occupied": "Occupé",
+        "selectedDate": "Date sélectionnée",
+        "previousMonth": "Mois précédent",
+        "nextMonth": "Mois suivant",
+        "status": {
+            "available": "Disponible",
+            "occupied": "Réservé",
+            "past": "Passé",
+            "future": "À venir"
+        }
+    }
+  }
+  

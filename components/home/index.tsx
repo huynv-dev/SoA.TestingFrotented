@@ -1,4 +1,5 @@
 import type { PageData } from '@/types/api';
+import type { Language } from '~/types/i18n';
 import FeatureSection from './feature'
 import HeroSection from './hero'
 import CaseStudies from './case-study'
@@ -7,12 +8,14 @@ import ExploreSection from './expore'
 import InteractiveMap from './interactive-map'
 import GallerySection from './gallery';
 import OurActivities from './our-activities/index';
+import { getDictionary } from '~/lib/getTranslation';
 
 interface HomePageProps {
   pageData: PageData;
+  language: Language;
 }
 
-export default function HomePage({ pageData }: HomePageProps) {
+export default function HomePage({ pageData, language }: HomePageProps) {
   return (
     <>
       <HeroSection
@@ -38,6 +41,7 @@ export default function HomePage({ pageData }: HomePageProps) {
         btn_4={pageData.bloc_2_2.btn_4}
         btn_5={pageData.bloc_2_2.btn_5}
         btn_6={pageData.bloc_2_2.btn_6}
+        language={language}
       />
       {/* Bloc 3 */}
       <CaseStudies
