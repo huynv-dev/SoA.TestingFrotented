@@ -7,6 +7,7 @@ import { Container } from '../ui/container';
 import { Calendar } from '../ui/calendar';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
+import Image from 'next/image';
 
 // Add busy dates
 const BUSY_DATES = [
@@ -151,20 +152,28 @@ export default function OurActivities({
             </div>
 
             {/* Buttons */}
-            <div className="flex justify-end gap-4 pt-4 ml-[124px]">
+            <div className="flex justify-end gap-4 pt-4 md:ml-[124px]">
               <Button
                 type="button"
                 variant="outline"
                 onClick={handleReset}
+                className='w-full md:w-auto'
               >
                 {btn_5}
               </Button>
               <Button
                 type="submit"
                 variant="primary"
+                className='w-full md:w-auto'
               >
                 {btn_6}
-                <Send className="w-4 h-4 ml-2" />
+                <Image 
+                  src="/static/images/send.svg" 
+                  alt="send" 
+                  width={24} 
+                  height={24} 
+                  className="ml-2" 
+                />
               </Button>
             </div>
           </form>

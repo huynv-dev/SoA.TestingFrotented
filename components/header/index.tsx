@@ -76,19 +76,22 @@ export const Header = ({ className, menuItems }: HeaderProps) => {
                 className="object-contain"
               />
             </Link>
-            <Button
-              variant="primary"
-              size="md"
-              className="h-10"
-              icon={<Image
-                src="/static/images/upright.png"
-                alt="Location icon"
-                width={20}
-                height={20}
-                className="object-contain"
-              />}
+            <div 
+              className="inline-flex items-center justify-center gap-2 px-2 py-1 bg-[#F2542D] rounded-[33px] cursor-pointer hover:bg-[#E24326] transition-colors duration-300"
             >
-            </Button>
+              <span className="text-white text-lg font-normal font-poppins capitalize leading-5">
+                {/* Empty text as per design */}
+              </span>
+              <div className="w-6 h-6 relative">
+                <Image
+                  src="/static/images/upright.png"
+                  alt="Location icon"
+                  width={24}
+                  height={24}
+                  className="absolute left-[5.25px] top-[5.25px] w-[13.5px] h-[13.5px] brightness-0 invert"
+                />
+              </div>
+            </div>
           </div>
 
           {/* Mobile menu */}

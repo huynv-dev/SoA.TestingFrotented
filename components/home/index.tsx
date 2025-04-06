@@ -53,7 +53,12 @@ export default function HomePage({ pageData }: HomePageProps) {
         text={pageData.bloc_4.text}
         pictos={pageData.bloc_4.pictos}
       />
-      <GallerySection/>
+      <GallerySection
+        title={pageData.bloc_5.title}
+        text={pageData.bloc_5.text}
+        reviews={pageData.bloc_5.reviews}
+        footer={pageData.bloc_5.footer}
+      />
       {/* Bloc 6 */}
       <ExploreSection
         title={pageData.bloc_6.title}

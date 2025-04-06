@@ -42,7 +42,7 @@ export default function CaseStudies({ title, moreInfo, cases }: CaseStudyProps) 
     <section className="py-16 md:py-24 min-h-[600px] max-w-screen overflow-hidden">
       <Container className="relative">
         <div className="flex items-center justify-between mb-12">
-          <h2 className="text-[#F2542D] text-[32px] md:text-[48px] font-semibold font-poppins uppercase leading-[60px] break-words">{title}</h2>
+          <h2 className="text-[#F2542D] text-[32px] md:text-[48px] line-clamp-1 font-semibold font-poppins uppercase leading-[60px] break-words">{title}</h2>
           <Link 
             href="#" 
             className="text-[#666666] text-lg md:text-[20px] font-medium font-poppins capitalize leading-[30px] break-words flex items-center gap-2 group"

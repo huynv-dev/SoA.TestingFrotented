@@ -10,9 +10,9 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'gap-2 py-2 px-3 md:py-3 md:px-5 bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500 text-[18px] md:text-[20px] font-medium leading-[20px] capitalize',
+        primary: 'gap-1 md:gap-2 py-1 px-1 md:py-3 md:px-5 bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500 text-[18px] md:text-[20px] font-medium leading-[20px] capitalize h-[40px] md:h-[46px] line-clamp-1',
         secondary: 'bg-white/10 text-white border-2 border-white/20 hover:bg-white/20 focus:ring-white',
-        outline: 'bg-white text-secondary-500 hover:bg-primary-500 hover:text-white focus:ring-secondary-500 text-[14px] md:text-[18px] font-medium leading-[16px] md:leading-[20px] capitalize border-[1.5px] border-secondary-500/30 h-[32px] md:h-[46px] font-poppins',
+        outline: 'bg-white text-secondary-500 hover:bg-primary-500 hover:text-white focus:ring-secondary-500 text-[14px] md:text-[18px] font-medium leading-[16px] md:leading-[20px] capitalize border-[1.5px] border-secondary-500/30 h-[40px] md:h-[46px] font-poppins',
         activeButton: 'py-2 px-3 md:py-3 md:px-4 bg-white text-secondary-500 hover:bg-secondary-50 focus:ring-secondary-500 text-[20px] md:text-[24px] font-medium leading-[20px] md:leading-[24px] capitalize border border-secondary-500',
       },
       size: {
@@ -57,7 +57,7 @@ type ButtonProps = ButtonAsButton | ButtonAsLink;
 const IconWrapper = ({ icon, position }: { icon: ReactNode; position: IconPosition }) => (
   <span 
     className={cn(
-      "inline-flex items-center transition-transform duration-200 group-hover:translate-x-1",
+      "inline-flex items-center transition-transform duration-200 group-hover:translate-x-1 line-clamp-1",
       position === 'front' ? 'mr-2 group-hover:-translate-x-1' : 'ml-2'
     )}
   >
@@ -77,11 +77,11 @@ export const Button = ({
 }: ButtonProps) => {
   const classes = cn(buttonVariants({ variant, size, withIcon: !!icon, className }));
   const content = (
-    <>
+    <div className='flex items-center justify-center gap-1 md:gap-2'>
       {icon && iconPosition === 'front' && <IconWrapper icon={icon} position="front" />}
       {children}
       {icon && iconPosition === 'back' && <IconWrapper icon={icon} position="back" />}
-    </>
+    </div>
   );
 
   if (href) {
