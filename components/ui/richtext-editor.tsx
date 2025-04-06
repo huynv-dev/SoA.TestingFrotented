@@ -96,8 +96,8 @@ const ImageUploadModal = ({ isOpen, onClose, onInsert }: ImageUploadModalProps) 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg w-full max-w-md p-6">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg w-full max-w-md p-4 sm:p-6 mx-auto">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold text-gray-900">Insert Image</h3>
           <button
@@ -110,18 +110,19 @@ const ImageUploadModal = ({ isOpen, onClose, onInsert }: ImageUploadModalProps) 
 
         {/* Drag & Drop Area */}
         <div
-          className={`border-2 border-dashed rounded-lg p-8 text-center mb-4 ${dragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
-            }`}
+          className={`border-2 border-dashed rounded-lg p-4 sm:p-8 text-center mb-4 ${
+            dragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
+          }`}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
           onDragOver={handleDrag}
           onDrop={handleDrop}
         >
           <MdFileUpload className="mx-auto text-gray-400 mb-2" size={32} />
-          <p className="text-gray-600 mb-2">Drag and drop an image here, or</p>
+          <p className="text-gray-600 mb-2 text-sm sm:text-base">Drag and drop an image here, or</p>
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="text-blue-500 hover:text-blue-700 font-medium"
+            className="text-blue-500 hover:text-blue-700 font-medium text-sm sm:text-base"
           >
             Choose a file
           </button>
@@ -397,9 +398,9 @@ const handleFontSize = (size: number) => {
   };
 
   return (
-    <div className="rounded-[24px] shadow-[0px_0px_30px_rgba(242,84,45,0.10)] outline outline-1 outline-secondary-500/30 -outline-offset-[1px] bg-white">
+    <div className="rounded-[24px] shadow-[0px_0px_30px_rgba(242,84,45,0.10)] outline outline-1 outline-secondary-500/30 -outline-offset-[1px] bg-white w-full">
       {/* Toolbar */}
-      <div className="flex items-center border-b border-gray-200 px-4 bg-white rounded-t-[123px]">
+      <div className="flex flex-wrap items-center border-b border-gray-200 px-2 sm:px-4 py-2 bg-white rounded-t-[123px] gap-y-2">
         {/* Font size button */}
         <div className="relative pr-2" ref={fontSizeDropdownRef}>
           <button
@@ -409,7 +410,7 @@ const handleFontSize = (size: number) => {
               setShowFontSizeDropdown(!showFontSizeDropdown);
             }}
           >
-            <span className="text-[#0E9594] text-base font-semibold font-poppins leading-[22px] break-words">
+            <span className="text-[#0E9594] text-sm sm:text-base font-semibold font-poppins leading-[22px] break-words">
               {fontSize}
             </span>
             <Image
@@ -434,9 +435,10 @@ const handleFontSize = (size: number) => {
             </div>
           )}
         </div>
+
         {/* Group formatting buttons */}
         <div className="flex items-center gap-1 border-l border-[#E2E8F0] pl-2">
-          <div className="p-2 flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-1 sm:gap-2">
             {[
               {
                 type: 'image' as const,
@@ -478,52 +480,52 @@ const handleFontSize = (size: number) => {
             ].map((item) => (
               <button
                 key={item.cmd}
-                className="p-1.5 hover:bg-gray-100 rounded text-gray-700"
+                className="p-1 sm:p-1.5 hover:bg-gray-100 rounded text-gray-700"
                 onClick={() => item.cmd === 'foreColor' ? handleCommand(item.cmd, item.color) : handleCommand(item.cmd)}
                 title={item.title}
               >
                 <Image
                   src={item.src}
                   alt={item.title}
-                  width={20}
-                  height={20}
-                  className="text-blue"
+                  width={18}
+                  height={18}
+                  className="text-blue sm:w-5 sm:h-5"
                 />
               </button>
             ))}
           </div>
-
         </div>
+
         {/* Group alignment buttons */}
         <div className="flex items-center gap-1 border-l border-[#E2E8F0] pl-2 ml-2">
-          <div className="p-2 flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-1 sm:gap-2">
             <button
-              className="w-8 h-8 flex items-center justify-center text-blue hover:bg-gray-50 rounded"
+              className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-blue hover:bg-gray-50 rounded"
               onClick={() => handleCommand('justifyLeft')}
               title="Align Left"
             >
-              <Image src="/static/images/align-right.svg" alt="align left" width={20} height={20} />
+              <Image src="/static/images/align-right.svg" alt="align left" width={18} height={18} className="sm:w-5 sm:h-5" />
             </button>
             <button
-              className="w-8 h-8 flex items-center justify-center text-blue hover:bg-gray-50 rounded"
+              className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-blue hover:bg-gray-50 rounded"
               onClick={() => handleCommand('justifyCenter')}
               title="Align Center"
             >
-              <Image src="/static/images/align-center.svg" alt="align center" width={20} height={20} />
+              <Image src="/static/images/align-center.svg" alt="align center" width={18} height={18} className="sm:w-5 sm:h-5" />
             </button>
             <button
-              className="w-8 h-8 flex items-center justify-center text-blue hover:bg-gray-50 rounded"
+              className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-blue hover:bg-gray-50 rounded"
               onClick={() => handleCommand('justifyRight')}
               title="Align Right"
             >
-              <Image src="/static/images/align-right.svg" alt="align right" width={20} height={20} />
+              <Image src="/static/images/align-right.svg" alt="align right" width={18} height={18} className="sm:w-5 sm:h-5" />
             </button>
           </div>
         </div>
+
         {/* Group list buttons */}
         <div className="flex items-center gap-1 border-l border-[#E2E8F0] pl-2">
-          <div className="p-2 flex items-center gap-2">
-            {/* List buttons */}
+          <div className="flex flex-wrap items-center gap-1 sm:gap-2">
             {[
               {
                 type: 'image' as const,
@@ -540,16 +542,16 @@ const handleFontSize = (size: number) => {
             ].map((item) => (
               <button
                 key={item.cmd}
-                className="w-8 h-8 flex items-center justify-center text-blue hover:bg-gray-50 rounded"
+                className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-blue hover:bg-gray-50 rounded"
                 onClick={() => handleCommand(item.cmd)}
                 title={item.title}
               >
                 <Image
                   src={item.src}
                   alt={item.title}
-                  width={20}
-                  height={20}
-                  className="text-blue"
+                  width={18}
+                  height={18}
+                  className="sm:w-5 sm:h-5"
                 />
               </button>
             ))}
@@ -558,7 +560,7 @@ const handleFontSize = (size: number) => {
 
         {/* Insert and Upload buttons */}
         <div className="flex items-center gap-1 border-l border-[#E2E8F0] pl-2">
-          <div className="p-2 flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-1 sm:gap-2">
             {[
               {
                 type: 'image' as const,
@@ -575,27 +577,21 @@ const handleFontSize = (size: number) => {
             ].map((item) => (
               <button
                 key={item.cmd}
-                className="w-8 h-8 flex items-center justify-center text-blue hover:bg-gray-50 rounded"
+                className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-blue hover:bg-gray-50 rounded"
                 onClick={() => {
                   if (item.cmd === 'insertImage') {
                     setShowImageModal(true);
                   } else if (item.cmd === 'upload') {
-                    // Create a hidden file input
                     const input = document.createElement('input');
                     input.type = 'file';
                     input.accept = '*/*';
                     input.style.display = 'none';
-
-                    // Handle file selection
                     input.onchange = (e) => {
                       const file = (e.target as HTMLInputElement).files?.[0];
                       if (file) {
-                        // Handle file upload here
                         console.log('File selected:', file);
                       }
                     };
-
-                    // Trigger file selection
                     document.body.appendChild(input);
                     input.click();
                     document.body.removeChild(input);
@@ -606,9 +602,9 @@ const handleFontSize = (size: number) => {
                 <Image
                   src={item.src}
                   alt={item.title}
-                  width={20}
-                  height={20}
-                  className="text-blue"
+                  width={18}
+                  height={18}
+                  className="sm:w-5 sm:h-5"
                 />
               </button>
             ))}
@@ -619,7 +615,7 @@ const handleFontSize = (size: number) => {
       {/* Editable content area */}
       <div
         ref={editorRef}
-        className="p-4 min-h-[150px] focus:outline-none"
+        className="p-2 sm:p-4 min-h-[150px] focus:outline-none"
         contentEditable={true}
         onInput={handleContentChange}
         onBlur={handleContentChange}

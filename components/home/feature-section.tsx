@@ -80,7 +80,7 @@ export const FeatureSection = ({ title, subtitle, cases }: FeatureSectionProps) 
   }));
 
   return (
-    <section className="py-8 md:py-16">
+    <section className="py-8 md:py-16" >
       <Container>
         <div className="flex flex-col items-center mb-6 md:mb-10">
           <SectionHeader

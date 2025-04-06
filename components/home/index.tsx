@@ -6,6 +6,7 @@ import CaseStudies from './case-studies'
 import AboutBasic from './about-basic'
 import ExploreSection from './explore-section'
 import InteractiveMap from './interactive-map'
+import GallerySection from './gallery-section';
 
 interface HomePageProps {
   pageData: PageData;
@@ -52,6 +53,7 @@ export default function HomePage({ pageData }: HomePageProps) {
         text={pageData.bloc_4.text}
         pictos={pageData.bloc_4.pictos}
       />
+      <GallerySection/>
       {/* Bloc 6 */}
       <ExploreSection
         title={pageData.bloc_6.title}
