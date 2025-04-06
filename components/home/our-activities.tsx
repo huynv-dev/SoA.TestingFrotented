@@ -118,12 +118,10 @@ export default function OurActivities({
                   {btn_3}
                 </label>
                 <div className="flex-1">
-                  {/* <RichTextEditor
-                    initialValue={formData.message}
+                  <RichTextEditor
+                    content={formData.message}
                     onChange={(value) => setFormData(prev => ({ ...prev, message: value }))}
                     placeholder="Write your message here..."
-                  /> */}
-                  <RichTextEditor
                   />
                 </div>
               </div>

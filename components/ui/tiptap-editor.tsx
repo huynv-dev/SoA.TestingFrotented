@@ -18,11 +18,13 @@ import FontSize from '@tiptap/extension-font-size'
 import TextStyle from '@tiptap/extension-text-style'
 import ImageTiptap from '@tiptap/extension-image'
 import Color from '@tiptap/extension-color'
+import Placeholder from '@tiptap/extension-placeholder'
 
 // Định nghĩa kiểu dữ liệu cho props
 interface TipTapEditorProps {
   content?: string
   onChange?: (content: string) => void
+  placeholder?: string
 }
 
 const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
@@ -278,7 +280,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
   )
 }
 
-const TipTapEditor: React.FC<TipTapEditorProps> = ({ content = '', onChange }) => {
+const TipTapEditor: React.FC<TipTapEditorProps> = ({ content = '', onChange, placeholder = 'Write something...' }) => {
   const editor = useEditor({
     extensions: [
       // Cấu hình StarterKit để loại bỏ các extension liên quan đến list
@@ -323,25 +325,51 @@ const TipTapEditor: React.FC<TipTapEditorProps> = ({ content = '', onChange }) =
       FontSize.configure({
         types: ['textStyle'],
       }),
+      Placeholder.configure({
+        placeholder,
+        showOnlyWhenEditable: true,
+        emptyEditorClass: 'is-editor-empty',
+        emptyNodeClass: 'is-node-empty',
+      }),
     ],
-    content: content || `
-      <h6>Heading 6</h6>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to</p>
-    `,
+    content: content || '',
     onUpdate: ({ editor }) => {
       if (onChange) {
         onChange(editor.getHTML())
       }
+    },
+    editorProps: {
+      attributes: {
+        class: 'focus:outline-none min-h-[200px] prose max-w-none',
+      },
     },
   })
 
   return (
     <div className="rounded-[24px] shadow-[0px_0px_30px_rgba(242,84,45,0.10)] outline outline-1 outline-secondary-500/30 -outline-offset-[1px] bg-white w-full">
       <MenuBar editor={editor} />
-      <EditorContent
-        className="p-4 min-h-[200px] prose max-w-none"
-        editor={editor}
-      />
+      <div className="relative">
+        <EditorContent
+          className="p-4 [&_.ProseMirror]:min-h-[200px] [&_.ProseMirror]:outline-none prose max-w-none"
+          editor={editor}
+        />
+        <style jsx global>{`
+          .ProseMirror.is-editor-empty:first-child::before {
+            content: attr(data-placeholder);
+            float: left;
+            color: #adb5bd;
+            pointer-events: none;
+            height: 0;
+          }
+          .ProseMirror p.is-node-empty:first-child::before {
+            content: attr(data-placeholder);
+            float: left;
+            color: #adb5bd;
+            pointer-events: none;
+            height: 0;
+          }
+        `}</style>
+      </div>
     </div>
   )
 }
