@@ -1,13 +1,13 @@
 'use client';
 import { useState } from 'react';
 import { Paperclip, Send } from 'lucide-react';
-import RichTextEditor from '../ui/richtext-editor';
 import { SectionHeader } from '../ui/section-header';
 import { Container } from '../ui/container';
 import { Calendar } from '../ui/calendar';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import Image from 'next/image';
+import RichTextEditor from '../ui/tiptap-editor';
 
 // Add busy dates
 const BUSY_DATES = [
@@ -118,10 +118,12 @@ export default function OurActivities({
                   {btn_3}
                 </label>
                 <div className="flex-1">
-                  <RichTextEditor
+                  {/* <RichTextEditor
                     initialValue={formData.message}
                     onChange={(value) => setFormData(prev => ({ ...prev, message: value }))}
                     placeholder="Write your message here..."
+                  /> */}
+                  <RichTextEditor
                   />
                 </div>
               </div>
