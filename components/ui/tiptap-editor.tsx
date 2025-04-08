@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useEditor, EditorContent, Editor } from '@tiptap/react'
-import Image from 'next/image';
+import Image from 'next/image'
 import StarterKit from '@tiptap/starter-kit'
 import Document from '@tiptap/extension-document'
 import Paragraph from '@tiptap/extension-paragraph'
@@ -37,10 +37,15 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
 
   const updateFontSize = (size: string) => {
     setFontSize(size)
-    editor.chain().focus().setFontSize(size + 'px').run()
+    editor
+      .chain()
+      .focus()
+      .setFontSize(size + 'px')
+      .run()
   }
   const clearFormatting = () => {
-    editor.chain()
+    editor
+      .chain()
       .focus()
       .unsetAllMarks() // Removes all marks (bold, italic, etc.)
       .unsetFontSize()
@@ -59,9 +64,8 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
     }
   }
 
-
   return (
-    <div className="flex flex-wrap items-center border-b border-gray-200 bg-white rounded-t-[123px] gap-y-2">
+    <div className="flex flex-wrap items-center gap-y-2 rounded-t-[123px] border-b border-gray-200 bg-white">
       {/* Group 1 */}
       <div className="flex items-center gap-x-2 p-2">
         {/* Font size dropdown */}
@@ -69,15 +73,17 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
           <select
             value={fontSize}
             onChange={(e) => updateFontSize(e.target.value)}
-            className="appearance-none px-2 py-1 pr-8 text-sm text-green-500 focus:outline-none focus:border-green-500"
+            className="appearance-none px-2 py-1 pr-8 text-sm text-green-500 focus:border-green-500 focus:outline-none"
           >
             {fontSizes.map((size) => (
-              <option key={size} value={size}>{size}</option>
+              <option key={size} value={size}>
+                {size}
+              </option>
             ))}
           </select>
 
           {/* Icon custom: mũi tên xuống */}
-          <div className="pointer-events-none absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500">
+          <div className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 transform text-gray-500">
             <Image
               src="/static/images/up-down.svg"
               alt="Next"
@@ -90,7 +96,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
       </div>
       {/* Group 2 */}
 
-      <div className="flex items-center md:gap-x-2 md:p-2 border-l border-[#E2E8F0] pl-2">
+      <div className="flex items-center border-l border-[#E2E8F0] pl-2 md:gap-x-2 md:p-2">
         <div className="relative ml-2">
           <input
             type="color"
@@ -99,15 +105,10 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
               const color = e.target.value
               editor.chain().focus().setColor(color).run()
             }}
-            className="absolute opacity-0 w-0 h-0"
+            className="absolute h-0 w-0 opacity-0"
           />
           <label htmlFor="custom-color-picker" className="cursor-pointer">
-            <Image
-              src="/static/images/text-color.svg"
-              alt="Next"
-              width={16}
-              height={16}
-            />
+            <Image src="/static/images/text-color.svg" alt="Next" width={16} height={16} />
           </label>
         </div>
         {/* Clear formatting button */}
@@ -117,121 +118,104 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
           title="Clear Formatting"
           aria-label="Clear formatting"
         >
-          <Image
-            src="/static/images/clear-formating.svg"
-            alt="Next"
-            width={16}
-            height={16}
-          />
+          <Image src="/static/images/clear-formating.svg" alt="Next" width={16} height={16} />
         </button>
         {/* Bold */}
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
           className={`p-2 ${editor.isActive('bold') ? 'text-green-500' : 'text-gray-500'}`}
         >
-          <Image
-            src="/static/images/bold.svg"
-            alt="Next"
-            width={16}
-            height={16}
-          />
+          <Image src="/static/images/bold.svg" alt="Next" width={16} height={16} />
         </button>
         {/* Italic */}
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
           className={`p-2 ${editor.isActive('italic') ? 'text-green-500' : 'text-gray-500'}`}
         >
-          <Image
-            src="/static/images/italic.svg"
-            alt="Next"
-            width={16}
-            height={16}
-          />
+          <Image src="/static/images/italic.svg" alt="Next" width={16} height={16} />
         </button>
         {/* Underline */}
         <button
           onClick={() => editor.chain().focus().toggleUnderline().run()}
           className={`p-2 ${editor.isActive('underline') ? 'text-green-500' : 'text-gray-500'}`}
         >
-          <Image
-            src="/static/images/underline.svg"
-            alt="Next"
-            width={16}
-            height={16}
-          />
+          <Image src="/static/images/underline.svg" alt="Next" width={16} height={16} />
         </button>
         {/* Strike */}
         <button
           onClick={() => editor.chain().focus().toggleStrike().run()}
           className={`p-2 ${editor.isActive('strike') ? 'text-green-500' : 'text-gray-500'}`}
         >
-          <Image
-            src="/static/images/strikethrough.svg"
-            alt="Next"
-            width={16}
-            height={16}
-          />
+          <Image src="/static/images/strikethrough.svg" alt="Next" width={16} height={16} />
         </button>
       </div>
       {/* Group 3 */}
-      <div className="flex items-center md:gap-x-2 md:p-2 border-l border-[#E2E8F0] pl-2">
+      <div className="flex items-center border-l border-[#E2E8F0] pl-2 md:gap-x-2 md:p-2">
         {/* Left */}
         <button
           onClick={() => editor.chain().focus().setTextAlign('left').run()}
           className={`p-2 ${editor.isActive({ textAlign: 'left' }) ? 'text-green-500' : 'text-gray-500'}`}
         >
-          <Image src="/static/images/align-right.svg" alt="align left" width={18} height={18} className="sm:w-5 sm:h-5" />
+          <Image
+            src="/static/images/align-right.svg"
+            alt="align left"
+            width={18}
+            height={18}
+            className="sm:h-5 sm:w-5"
+          />
         </button>
         {/* Center */}
         <button
           onClick={() => editor.chain().focus().setTextAlign('center').run()}
           className={`p-2 ${editor.isActive({ textAlign: 'center' }) ? 'text-green-500' : 'text-gray-500'}`}
         >
-          <Image src="/static/images/align-center.svg" alt="align center" width={18} height={18} className="sm:w-5 sm:h-5" />
+          <Image
+            src="/static/images/align-center.svg"
+            alt="align center"
+            width={18}
+            height={18}
+            className="sm:h-5 sm:w-5"
+          />
         </button>
         {/* Right */}
         <button
           onClick={() => editor.chain().focus().setTextAlign('right').run()}
           className={`p-2 ${editor.isActive({ textAlign: 'right' }) ? 'text-green-500' : 'text-gray-500'}`}
         >
-          <Image src="/static/images/align-right.svg" alt="align left" width={18} height={18} className="sm:w-5 sm:h-5" />
+          <Image
+            src="/static/images/align-right.svg"
+            alt="align left"
+            width={18}
+            height={18}
+            className="sm:h-5 sm:w-5"
+          />
         </button>
       </div>
       {/* Group 4 */}
-      <div className="flex items-center md:gap-x-2 md:p-2 border-l border-[#E2E8F0] pl-2">
+      <div className="flex items-center border-l border-[#E2E8F0] pl-2 md:gap-x-2 md:p-2">
         {/* Bullet List */}
         <button
           onClick={() => {
-            console.log('Toggle bullet list');
-            editor.chain().focus().toggleBulletList().run();
+            console.log('Toggle bullet list')
+            editor.chain().focus().toggleBulletList().run()
           }}
           className={`p-2 ${editor.isActive('bulletList') ? 'text-green-500' : 'text-gray-500'}`}
         >
-          <Image
-            src="/static/images/list-bullet.svg"
-            alt="Next"
-            width={16}
-            height={16}
-          />
+          <Image src="/static/images/list-bullet.svg" alt="Next" width={16} height={16} />
         </button>
         {/* Ordered List */}
         <button
           onClick={() => {
-            console.log('Toggle ordered list');
-            editor.chain().focus().toggleOrderedList().run();
+            console.log('Toggle ordered list')
+            editor.chain().focus().toggleOrderedList().run()
           }}
           className={`p-2 ${editor.isActive('orderedList') ? 'text-green-500' : 'text-gray-500'}`}
         >
-          <Image
-            src="/static/images/list-number.svg"
-            alt="Next"
-            width={16}
-            height={16}
-          />
+          <Image src="/static/images/list-number.svg" alt="Next" width={16} height={16} />
         </button>
       </div>
       {/* Group 5 */}
-      <div className="flex items-center md:gap-x-2 md:p-2 border-l border-[#E2E8F0] pl-2">
+      <div className="flex items-center border-l border-[#E2E8F0] pl-2 md:gap-x-2 md:p-2">
         <input
           type="file"
           accept="image/*"
@@ -249,7 +233,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
             alt="Upload image"
             width={18}
             height={18}
-            className="sm:w-5 sm:h-5"
+            className="sm:h-5 sm:w-5"
           />
         </button>
       </div>
@@ -264,7 +248,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
         <button
           disabled
           onClick={() => document.getElementById('image-upload')?.click()}
-          className="p-2 text-gray-500 hover:text-green-500 cursor-not-allowed"
+          className="cursor-not-allowed p-2 text-gray-500 hover:text-green-500"
           title="Upload image"
         >
           <Image
@@ -272,7 +256,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
             alt="Upload image"
             width={18}
             height={18}
-            className="sm:w-5 sm:h-5"
+            className="sm:h-5 sm:w-5"
           />
         </button>
       </div>
@@ -280,10 +264,13 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
   )
 }
 
-const TipTapEditor: React.FC<TipTapEditorProps> = ({ content = '', onChange, placeholder = 'Write something...' }) => {
+const TipTapEditor: React.FC<TipTapEditorProps> = ({
+  content = '',
+  onChange,
+  placeholder = 'Write something...',
+}) => {
   const editor = useEditor({
     extensions: [
-      // Cấu hình StarterKit để loại bỏ các extension liên quan đến list
       StarterKit.configure({
         bulletList: false,
         orderedList: false,
@@ -299,7 +286,6 @@ const TipTapEditor: React.FC<TipTapEditorProps> = ({ content = '', onChange, pla
       Italic,
       Underline,
       Strike,
-      // Cấu hình riêng cho các extension list
       BulletList.configure({
         HTMLAttributes: {
           class: 'list-disc ml-4',
@@ -317,10 +303,10 @@ const TipTapEditor: React.FC<TipTapEditorProps> = ({ content = '', onChange, pla
       }),
       ImageTiptap,
       TextStyle,
-      TextStyle,  // cần cho cả màu và fontSize
-      Color,      // đây là extension thay đổi màu
+      TextStyle,
+      Color,
       TextAlign.configure({
-        types: ['heading', 'paragraph', 'bulletList', 'orderedList'], // Thêm bulletList và orderedList vào types
+        types: ['heading', 'paragraph', 'bulletList', 'orderedList'],
       }),
       FontSize.configure({
         types: ['textStyle'],
@@ -332,6 +318,7 @@ const TipTapEditor: React.FC<TipTapEditorProps> = ({ content = '', onChange, pla
         emptyNodeClass: 'is-node-empty',
       }),
     ],
+    immediatelyRender: false,
     content: content,
     onUpdate: ({ editor }) => {
       if (onChange) {
@@ -353,11 +340,11 @@ const TipTapEditor: React.FC<TipTapEditorProps> = ({ content = '', onChange, pla
   }, [content, editor])
 
   return (
-    <div className="rounded-[24px] shadow-[0px_0px_30px_rgba(242,84,45,0.10)] outline outline-1 outline-secondary-500/30 -outline-offset-[1px] bg-white w-full">
+    <div className="w-full rounded-[24px] bg-white shadow-[0px_0px_30px_rgba(242,84,45,0.10)] outline outline-1 -outline-offset-[1px] outline-secondary-500/30">
       <MenuBar editor={editor} />
       <div className="relative">
         <EditorContent
-          className="p-4 [&_.ProseMirror]:min-h-[200px] [&_.ProseMirror]:outline-none prose max-w-none"
+          className="prose max-w-none p-4 [&_.ProseMirror]:min-h-[200px] [&_.ProseMirror]:outline-none"
           editor={editor}
         />
         <style jsx global>{`
