@@ -92,3 +92,8 @@ Create a `.env` file in the root directory with the following variables:
 - Interactive map integration
 - Responsive design
 - TypeScript support
+- Environment variable management
+- Docker containerization for production deployment
+- Pnpm package manager for efficient dependency management
+- ESLint and Prettier for code quality and formatting
+- i18n and l10n support for internationalization and localization
